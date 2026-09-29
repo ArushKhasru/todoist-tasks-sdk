@@ -77,6 +77,6 @@ The source specification's SHA-256 is `c720d271ad4d4fc6bd4e435fb27f48c1c3e806728
 
 ## Time and AI use
 
-API research and account setup took an estimated 5-7 minutes. The first assisted implementation and report draft spanned about 20 minutes by local file timestamps, giving an initial elapsed estimate of 25-27 minutes. Human time and automated execution were not recorded separately. The later rename, bug fix, report revisions and publication work happened after that initial estimate; I have not timed those separately.
+For the SDK exercise, I estimate 5-7 minutes of human time choosing the API and setting up the account. I did not separately time later hands-on review or troubleshooting, so I cannot give an exact total for active human work on the SDK. Automated execution is not human time. I wrote and revised this report after the initial exercise; the later rename, fixes and publication also took place in separate sessions and are not included in the 5-7 minute estimate.
 
 I used AI assistance to compare APIs, prepare the scoped specification, troubleshoot the generator, run checks and draft this report. I checked the model output, the full test count and the live read-only responses described above.
