@@ -23,7 +23,7 @@ The most useful test failure during development came from Todoist's paginated li
 | SDK `Task().list({ limit: 1 })` with a real token | Returned an empty array for the empty account |
 | Separate read-only `GET /api/v1/tasks?limit=1` | HTTP 200, with `results: []` and `next_cursor: null` |
 
-I did not make live create, update or delete requests. Non-empty responses and cursor traversal remain untested against Todoist. CI and documentation QA have not been run.
+I did not make live create, update or delete requests. Non-empty responses and cursor traversal remain untested against Todoist. The initial GitHub CI and documentation workflows passed after the repository was published. Only the TypeScript target was generated; success in other language jobs should not be read as validation of SDKs that are not present.
 
 ## What worked
 
