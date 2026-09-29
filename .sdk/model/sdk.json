@@ -1,0 +1,1176 @@
+{
+  "NAME": "TODOIST-TASKS",
+  "Name": "TodoistTasks",
+  "def": "todoist.tasks.json",
+  "main": {
+    "api": {
+      "entity": {},
+      "guide": {}
+    },
+    "custom": {
+      "plurals": {}
+    },
+    "def": {
+      "desc": ""
+    },
+    "kit": {
+      "author": {
+        "name": "Arush Khasru",
+        "url": "https://github.com/ArushKhasru"
+      },
+      "config": {
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ],
+        "headers": {
+          "content-type": "application/json"
+        },
+        "repr": "auto"
+      },
+      "contributor": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "github-pages": {
+            "active": false,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "github-pages",
+            "name": "github-pages",
+            "origname": "",
+            "output": {
+              "path": "docs"
+            },
+            "package": "@voxgig/docgen",
+            "published": false,
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          },
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "published": false,
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
+      "entity": {
+        "task": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": {
+            "added_at": {
+              "a": true,
+              "fo": "date-time",
+              "h": "Added At",
+              "n": "added_at",
+              "r": true,
+              "sh": "Date and time when the task was created, or `null` if unknown.",
+              "t": "`$ANY`"
+            },
+            "added_by_uid": {
+              "a": true,
+              "h": "Added By Uid",
+              "n": "added_by_uid",
+              "r": true,
+              "sh": "String ID of the user who created the task, or `null` if unknown.",
+              "t": "`$ANY`"
+            },
+            "assigned_by_uid": {
+              "a": true,
+              "h": "Assigned By Uid",
+              "n": "assigned_by_uid",
+              "r": true,
+              "sh": "String ID of the user who assigned the task, or `null` if unassigned.",
+              "t": "`$ANY`"
+            },
+            "assignee_id": {
+              "a": true,
+              "h": "Assignee Id",
+              "n": "assignee_id",
+              "r": false,
+              "sh": "ID of the user to assign the task to.",
+              "t": "`$STRING`"
+            },
+            "checked": {
+              "a": true,
+              "h": "Checked",
+              "n": "checked",
+              "r": true,
+              "sh": "Whether the task is completed.",
+              "t": "`$BOOLEAN`"
+            },
+            "child_order": {
+              "a": true,
+              "h": "Child Order",
+              "n": "child_order",
+              "op": {
+                "create": {
+                  "req": false,
+                  "type": "`$INTEGER`"
+                }
+              },
+              "r": true,
+              "sh": "Position of the task among sibling tasks.",
+              "t": "`$INTEGER`"
+            },
+            "completed_at": {
+              "a": true,
+              "fo": "date-time",
+              "h": "Completed At",
+              "n": "completed_at",
+              "r": true,
+              "sh": "Date and time when the task was completed, or `null` if active.",
+              "t": "`$ANY`"
+            },
+            "completed_by_uid": {
+              "a": true,
+              "h": "Completed By Uid",
+              "n": "completed_by_uid",
+              "r": true,
+              "sh": "String ID of the user who completed the task, or `null` if active.",
+              "t": "`$ANY`"
+            },
+            "completed_count": {
+              "a": true,
+              "h": "Completed Count",
+              "n": "completed_count",
+              "r": true,
+              "sh": "Number of times the task has been marked as completed.",
+              "t": "`$INTEGER`"
+            },
+            "content": {
+              "a": true,
+              "h": "Content",
+              "n": "content",
+              "op": {
+                "create": {
+                  "req": false,
+                  "type": "`$STRING`"
+                }
+              },
+              "r": true,
+              "sh": "Task content.",
+              "t": "`$STRING`"
+            },
+            "day_order": {
+              "a": true,
+              "h": "Day Order",
+              "n": "day_order",
+              "op": {
+                "create": {
+                  "req": false,
+                  "type": "`$INTEGER`"
+                }
+              },
+              "r": true,
+              "sh": "Task order for day-based views.",
+              "t": "`$INTEGER`"
+            },
+            "deadline": {
+              "a": true,
+              "h": "Deadline",
+              "n": "deadline",
+              "r": true,
+              "sh": "Deadline details for the task, or `null` when the task has no deadline.",
+              "t": "`$ANY`"
+            },
+            "deadline_date": {
+              "a": true,
+              "fo": "date",
+              "h": "Deadline Date",
+              "n": "deadline_date",
+              "r": false,
+              "sh": "Updated deadline date in YYYY-MM-DD format.",
+              "t": "`$ANY`"
+            },
+            "description": {
+              "a": true,
+              "h": "Description",
+              "n": "description",
+              "op": {
+                "create": {
+                  "req": false,
+                  "type": "`$STRING`"
+                }
+              },
+              "r": true,
+              "sh": "Task description.",
+              "t": "`$STRING`"
+            },
+            "due": {
+              "a": true,
+              "h": "Due",
+              "n": "due",
+              "r": true,
+              "sh": "Due date details for the task, or `null` when the task has no due date.",
+              "t": "`$ANY`"
+            },
+            "due_date": {
+              "a": true,
+              "h": "Due Date",
+              "n": "due_date",
+              "r": false,
+              "sh": "Updated due date in RFC 3339 format or similar.",
+              "t": "`$STRING`"
+            },
+            "due_datetime": {
+              "a": true,
+              "h": "Due Datetime",
+              "n": "due_datetime",
+              "r": false,
+              "sh": "Updated due date and time.",
+              "t": "`$STRING`"
+            },
+            "due_lang": {
+              "a": true,
+              "h": "Due Lang",
+              "n": "due_lang",
+              "r": false,
+              "sh": "Updated due date language code.",
+              "t": "`$STRING`"
+            },
+            "due_string": {
+              "a": true,
+              "h": "Due String",
+              "n": "due_string",
+              "r": false,
+              "sh": "Updated human-readable representation of the due date.",
+              "t": "`$STRING`"
+            },
+            "duration": {
+              "a": true,
+              "h": "Duration",
+              "n": "duration",
+              "op": {
+                "create": {
+                  "req": false,
+                  "type": "`$NUMBER`"
+                }
+              },
+              "r": true,
+              "sh": "Task duration details, or `null` when the task has no duration.",
+              "t": "`$NUMBER`",
+              "union": {
+                "branches": 2,
+                "count": 1,
+                "depth": 3
+              }
+            },
+            "duration_unit": {
+              "a": true,
+              "h": "Duration Unit",
+              "n": "duration_unit",
+              "r": false,
+              "sh": "Unit of time for duration.",
+              "t": "`$ANY`"
+            },
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": true,
+              "sh": "String ID of the task.",
+              "t": "`$STRING`"
+            },
+            "is_collapsed": {
+              "a": true,
+              "h": "Is Collapsed",
+              "n": "is_collapsed",
+              "op": {
+                "create": {
+                  "req": false,
+                  "type": "`$BOOLEAN`"
+                }
+              },
+              "r": true,
+              "sh": "Whether the task is collapsed in the user's view.",
+              "t": "`$BOOLEAN`"
+            },
+            "is_deleted": {
+              "a": true,
+              "h": "Is Deleted",
+              "n": "is_deleted",
+              "r": true,
+              "sh": "Whether the task is deleted.",
+              "t": "`$BOOLEAN`"
+            },
+            "labels": {
+              "a": true,
+              "h": "Labels",
+              "n": "labels",
+              "op": {
+                "create": {
+                  "req": false,
+                  "type": "`$ANY`"
+                }
+              },
+              "r": true,
+              "sh": "Names of labels attached to the task.",
+              "t": "`$ARRAY`"
+            },
+            "note_count": {
+              "a": true,
+              "h": "Note Count",
+              "n": "note_count",
+              "r": true,
+              "sh": "**Deprecated**: only returns 0 and is marked for removal.",
+              "t": "`$INTEGER`"
+            },
+            "order": {
+              "a": true,
+              "h": "Order",
+              "n": "order",
+              "r": false,
+              "sh": "Position of the task in the project or section",
+              "t": "`$ANY`"
+            },
+            "order_key": {
+              "a": true,
+              "h": "Order Key",
+              "n": "order_key",
+              "r": true,
+              "sh": "Fractional-indexing order key: tasks sort by comparing keys lexicographically among siblings sharing the same project, section and parent task.",
+              "t": "`$ANY`"
+            },
+            "parent_id": {
+              "a": true,
+              "h": "Parent Id",
+              "n": "parent_id",
+              "op": {
+                "create": {
+                  "req": false,
+                  "type": "`$STRING`"
+                }
+              },
+              "r": true,
+              "sh": "String ID of the parent task, or `null` if this is a top-level task.",
+              "t": "`$STRING`"
+            },
+            "postponed_count": {
+              "a": true,
+              "h": "Postponed Count",
+              "n": "postponed_count",
+              "r": true,
+              "sh": "Number of times the task's due date has been rescheduled by the user.",
+              "t": "`$INTEGER`"
+            },
+            "priority": {
+              "a": true,
+              "h": "Priority",
+              "n": "priority",
+              "op": {
+                "create": {
+                  "req": false,
+                  "type": "`$ANY`"
+                }
+              },
+              "r": true,
+              "sh": "Task priority from 1 (normal) to 4 (urgent).",
+              "t": "`$INTEGER`"
+            },
+            "project_id": {
+              "a": true,
+              "h": "Project Id",
+              "n": "project_id",
+              "op": {
+                "create": {
+                  "req": false,
+                  "type": "`$STRING`"
+                }
+              },
+              "r": true,
+              "sh": "String ID of the project that contains the task.",
+              "t": "`$STRING`"
+            },
+            "responsible_uid": {
+              "a": true,
+              "h": "Responsible Uid",
+              "n": "responsible_uid",
+              "r": true,
+              "sh": "String ID of the user responsible for the task, or `null` if unassigned.",
+              "t": "`$ANY`"
+            },
+            "section_id": {
+              "a": true,
+              "h": "Section Id",
+              "n": "section_id",
+              "op": {
+                "create": {
+                  "req": false,
+                  "type": "`$STRING`"
+                }
+              },
+              "r": true,
+              "sh": "String ID of the section that contains the task, or `null` if the task is not in a section.",
+              "t": "`$STRING`"
+            },
+            "updated_at": {
+              "a": true,
+              "fo": "date-time",
+              "h": "Updated At",
+              "n": "updated_at",
+              "r": true,
+              "sh": "Date and time when the task was last updated, or `null` if unknown.",
+              "t": "`$ANY`"
+            },
+            "user_id": {
+              "a": true,
+              "h": "User Id",
+              "n": "user_id",
+              "r": true,
+              "sh": "String ID of the user who owns the task.",
+              "t": "`$STRING`"
+            }
+          },
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
+          "name": "task",
+          "op": {
+            "create": {
+              "input": "data",
+              "name": "create",
+              "points": [
+                {
+                  "a": true,
+                  "co": {
+                    "id": "POST /api/v1/tasks/{task_id}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "params": [
+                      {
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "task_id",
+                        "r": true,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "POST",
+                  "o": "/api/v1/tasks/{task_id}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
+                  },
+                  "r": {
+                    "param": {
+                      "task_id": "id"
+                    }
+                  },
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "tasks"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "a": true,
+                  "co": {
+                    "id": "POST /api/v1/tasks",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {},
+                  "k": "http",
+                  "m": "POST",
+                  "o": "/api/v1/tasks",
+                  "q": {},
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "tasks"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            },
+            "list": {
+              "input": "data",
+              "name": "list",
+              "points": [
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/v1/tasks",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "cursor",
+                        "or": "cursor",
+                        "r": false,
+                        "t": "`$ANY`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "ids",
+                        "or": "ids",
+                        "r": false,
+                        "t": "`$ANY`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "label",
+                        "or": "label",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "ex": 50,
+                        "k": "query",
+                        "n": "limit",
+                        "or": "limit",
+                        "r": false,
+                        "t": "`$INTEGER`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "parent_id",
+                        "or": "parent_id",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "project_id",
+                        "or": "project_id",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "section_id",
+                        "or": "section_id",
+                        "r": false,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/v1/tasks",
+                  "q": {
+                    "exist": [
+                      "cursor",
+                      "ids",
+                      "label",
+                      "limit",
+                      "parent_id",
+                      "project_id",
+                      "section_id"
+                    ]
+                  },
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "tasks"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body.results`"
+                  }
+                }
+              ]
+            },
+            "load": {
+              "input": "data",
+              "name": "load",
+              "points": [
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/v1/tasks/{task_id}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "params": [
+                      {
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "task_id",
+                        "r": true,
+                        "t": "`$STRING`"
+                      }
+                    ],
+                    "query": [
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "public_key",
+                        "or": "public_key",
+                        "r": false,
+                        "t": "`$ANY`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/v1/tasks/{task_id}",
+                  "q": {
+                    "exist": [
+                      "id",
+                      "public_key"
+                    ]
+                  },
+                  "r": {
+                    "param": {
+                      "task_id": "id"
+                    }
+                  },
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "tasks"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            },
+            "remove": {
+              "input": "data",
+              "name": "remove",
+              "points": [
+                {
+                  "a": true,
+                  "co": {
+                    "id": "DELETE /api/v1/tasks/{task_id}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "params": [
+                      {
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "task_id",
+                        "r": true,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "DELETE",
+                  "o": "/api/v1/tasks/{task_id}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
+                  },
+                  "r": {
+                    "param": {
+                      "task_id": "id"
+                    }
+                  },
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "tasks"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        }
+      },
+      "feature": {
+        "test": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false
+            },
+            "optspec": {
+              "entity": "`$MAP`",
+              "net": "`$MAP`"
+            },
+            "strict": false
+          },
+          "description": "In-memory mock transport for testing without a live server",
+          "hook": {
+            "GetData": {
+              "active": true,
+              "await": false
+            },
+            "GetMatch": {
+              "active": true,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": true,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": true,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PrePoint": {
+              "active": true,
+              "await": false
+            },
+            "PreRequest": {
+              "active": true,
+              "await": false
+            },
+            "PreResponse": {
+              "active": true,
+              "await": false
+            },
+            "PreResult": {
+              "active": true,
+              "await": false
+            },
+            "PreSpec": {
+              "active": true,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": true,
+              "await": false
+            },
+            "SetMatch": {
+              "active": true,
+              "await": false
+            }
+          },
+          "name": "test",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Test transport",
+          "transport": "base",
+          "version": "0.0.1"
+        }
+      },
+      "flow": {
+        "BasicTaskFlow": {
+          "active": true,
+          "entity": "task",
+          "key$": "BasicTaskFlow",
+          "kind": "basic",
+          "name": "BasicTaskFlow",
+          "param": {},
+          "step": [
+            {
+              "a": true,
+              "d": {},
+              "i": {
+                "ref": "task_ref01"
+              },
+              "m": {},
+              "o": "create",
+              "s": [],
+              "v": []
+            },
+            {
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "task_ref01"
+                  }
+                }
+              ]
+            },
+            {
+              "a": true,
+              "d": {},
+              "i": {
+                "ref": "task_ref01",
+                "srcdatavar": "task_ref01_data",
+                "suffix": "_dt0"
+              },
+              "m": {
+                "id": "task01"
+              },
+              "o": "load",
+              "s": [],
+              "v": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-task_ref01"
+                  }
+                }
+              ]
+            },
+            {
+              "a": true,
+              "d": {},
+              "i": {
+                "ref": "task_ref01",
+                "suffix": "_rm0"
+              },
+              "m": {
+                "id": "task01"
+              },
+              "o": "remove",
+              "s": [],
+              "v": []
+            },
+            {
+              "a": true,
+              "d": {},
+              "i": {
+                "suffix": "_rt0"
+              },
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
+                {
+                  "apply": "ItemNotExists",
+                  "def": {
+                    "ref": "task_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "info": {
+        "description": "Unofficial task-only SDK assessment. Source: https://developer.todoist.com/openapi.json. Not created by, affiliated with, or supported by Todoist.",
+        "security": {
+          "in": "header",
+          "name": "Authorization",
+          "prefix": "Bearer",
+          "scheme": "bearerAuth",
+          "type": "http"
+        },
+        "servers": [
+          {
+            "url": "https://api.todoist.com/"
+          }
+        ],
+        "summary": "Unofficial task-only SDK assessment.",
+        "title": "Todoist Tasks",
+        "version": "1",
+        "website": "https://todoist.com"
+      },
+      "option": {},
+      "optspec": {
+        "allow": {
+          "method": "GET,PUT,POST,PATCH,DELETE,OPTIONS",
+          "op": "create,update,load,list,remove,command,direct,graphql"
+        },
+        "apikey": "",
+        "auth": {
+          "basic": false,
+          "in": "",
+          "name": "",
+          "prefix": ""
+        },
+        "base": "http://localhost:8000",
+        "clean": {
+          "keys": "key,token,id"
+        },
+        "entity": {
+          "`$CHILD`": {
+            "`$OPEN`": true,
+            "active": false,
+            "alias": {}
+          }
+        },
+        "extend": "`$ANY`",
+        "headers": {
+          "`$CHILD`": "`$STRING`"
+        },
+        "prefix": "",
+        "secret": "",
+        "server": {
+          "`$CHILD`": ""
+        },
+        "suffix": "",
+        "system": {
+          "fetch": "`$ANY`"
+        },
+        "test": {
+          "active": false,
+          "entity": {
+            "`$OPEN`": true
+          }
+        },
+        "utility": {}
+      },
+      "phase": {
+        "build": {
+          "active": true
+        },
+        "top": {
+          "active": true
+        }
+      },
+      "repo": {
+        "host": "github.com",
+        "path": ""
+      },
+      "target": {
+        "ts": {
+          "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {
+            "@types/node": {
+              "active": true,
+              "kind": "dev",
+              "version": "^25.6.0"
+            },
+            "typescript": {
+              "active": true,
+              "kind": "dev",
+              "version": "^5.9.3"
+            }
+          },
+          "ext": "ts",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
+          "module": {
+            "goversion": "",
+            "name": "todoist-tasks",
+            "package": "",
+            "path": ""
+          },
+          "name": "ts",
+          "origname": "",
+          "output": {
+            "adopt": false,
+            "create": true,
+            "path": "",
+            "repo": "",
+            "root": false,
+            "sdkrel": ""
+          },
+          "package": "@voxgig/sdkgen",
+          "provides": {
+            "schema": true,
+            "sekreto": true
+          },
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "npm",
+              "package": "todoist-tasks-sdk",
+              "state": "pending",
+              "url": "https://registry.npmjs.org",
+              "vault": {
+                "alias": "npm",
+                "env": "",
+                "recipe": "npm"
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            },
+            "version": "0.0.1"
+          },
+          "superseded": [
+            "test/runner.ts",
+            "test/vendor/omni/compat.ts",
+            "src/feature/secrets/sekreto/Providers.ts",
+            "src/feature/secrets/sekreto/Sigv4.ts",
+            "src/feature/secrets/sekreto/provider/Registry.ts",
+            "src/feature/secrets/sekreto/provider/http.ts"
+          ],
+          "title": "TypeScript"
+        }
+      },
+      "test": {
+        "live": {
+          "app": false,
+          "base": "",
+          "strict": true
+        }
+      }
+    }
+  },
+  "name": "todoist-tasks",
+  "name-": "todoist-tasks",
+  "name_": "todoist_tasks",
+  "name__orig": "todoist-tasks",
+  "origin": "ArushKhasru"
+}

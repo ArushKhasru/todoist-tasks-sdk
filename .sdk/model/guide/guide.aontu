@@ -1,0 +1,11 @@
+# Guide
+
+@"@voxgig/apidef/model/guide.aontu"
+
+@"./base-guide.aontu"
+
+
+
+
+# Todoist wraps task records in a paginated results object.
+guide: entity: task: path: "/api/v1/tasks": op: list: transform: res: '`body.results`'

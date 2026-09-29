@@ -1,0 +1,1271 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Todoist Tasks",
+    "version": "1",
+    "description": "Unofficial task-only SDK assessment. Source: https://developer.todoist.com/openapi.json. Not created by, affiliated with, or supported by Todoist."
+  },
+  "servers": [
+    {
+      "url": "https://api.todoist.com/"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "paths": {
+    "/api/v1/tasks": {
+      "post": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Create Task",
+        "description": "Create a new task.",
+        "operationId": "create_task_api_v1_tasks_post",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_37565102"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemSyncView"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Get Tasks",
+        "description": "Get all active tasks for the user.\n\nAll provided parameters are used to narrow down the list of tasks.\n\nThis is a paginated endpoint. See the [Pagination guide](#tag/Pagination) for details on using cursor-based pagination.",
+        "operationId": "get_tasks_api_v1_tasks_get",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "String ID of the project to get tasks from",
+              "examples": [
+                "6XGgm6PHrGgMpCFX"
+              ],
+              "title": "Project Id"
+            }
+          },
+          {
+            "name": "section_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "String ID of the section to get tasks from",
+              "examples": [
+                "6fFPHV272WWh3gpW"
+              ],
+              "title": "Section Id"
+            }
+          },
+          {
+            "name": "parent_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "String ID of the parent task to get sub-tasks from",
+              "examples": [
+                "6fFPHRxcmVqm4C84"
+              ],
+              "title": "Parent Id"
+            }
+          },
+          {
+            "name": "label",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Filter tasks by label name.",
+              "examples": [
+                "next_action"
+              ],
+              "title": "Label"
+            }
+          },
+          {
+            "name": "ids",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "A list of the task IDs to retrieve, this should be a comma separated list",
+              "examples": [
+                "6XGgmFVcrG5RRjVr,6fFPHV272WWh3gpW"
+              ],
+              "title": "Ids"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "^[0-9a-zA-Z_-]+\\.[0-9a-zA-Z_-]+$",
+                  "description": "An opaque string used as the cursor for pagination. Must be used with the same parameters from the previous request",
+                  "examples": [
+                    "14540000435w8hj8pXXwPQJJch.X9DBH8ya2Xenok55"
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cursor"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 200,
+              "exclusiveMinimum": 0,
+              "description": "The number of objects to return in a page",
+              "examples": [
+                50
+              ],
+              "default": 50,
+              "title": "Limit"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedList_ItemSyncView_"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/tasks/{task_id}": {
+      "delete": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Delete Task",
+        "description": "Delete a task and all of its subtasks.\n\nReturns `NOT_FOUND` when the task does not exist and `FORBIDDEN` when the\nauthenticated user cannot modify the task.",
+        "operationId": "delete_task_api_v1_tasks__task_id__delete",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "String ID of the task",
+              "examples": [
+                "6XGgmFVcrG5RRjVr"
+              ],
+              "title": "Task Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Get Task",
+        "description": "Returns a single active (non-completed) task by ID",
+        "operationId": "get_task_api_v1_tasks__task_id__get",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "String ID of the task",
+              "examples": [
+                "6XGgmFVcrG5RRjVr"
+              ],
+              "title": "Task Id"
+            }
+          },
+          {
+            "name": "public_key",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "description": "Public project access key.",
+                  "examples": [
+                    "550e8400-e29b-41d4-a716-446655440000"
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Public Key"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemSyncView"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Update Task",
+        "description": "Updates an existing task.",
+        "operationId": "update_task_api_v1_tasks__task_id__post",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "String ID of the task",
+              "examples": [
+                "6XGgmFVcrG5RRjVr"
+              ],
+              "title": "Task Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_829067ab"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemSyncView"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Body_37565102": {
+        "properties": {
+          "content": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Content",
+            "description": "Task content.",
+            "examples": [
+              "Buy milk"
+            ]
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description",
+            "description": "Task description.",
+            "examples": [
+              "Pick up two liters of whole milk."
+            ]
+          },
+          "project_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Project Id",
+            "description": "ID of the project to add the task to. If omitted or null, the task will be added to the user's Inbox.",
+            "examples": [
+              "6XGgm6PHrGgMpCFX"
+            ]
+          },
+          "section_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Section Id",
+            "description": "ID of the section to add the task to",
+            "examples": [
+              "6fFPHV272WWh3gpW"
+            ]
+          },
+          "parent_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Parent Id",
+            "description": "ID of the parent task",
+            "examples": [
+              "6XGgmFVcrG5RRjVr"
+            ]
+          },
+          "order": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "maximum": 2147483647,
+                "minimum": -2147483648
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Order",
+            "description": "Position of the task in the project or section",
+            "examples": [
+              12
+            ]
+          },
+          "labels": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Labels",
+            "description": "List of label names.",
+            "examples": [
+              [
+                "errands",
+                "shopping"
+              ]
+            ]
+          },
+          "priority": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "maximum": 4,
+                "minimum": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Priority",
+            "description": "Task priority (1-4, where 1 is highest)",
+            "examples": [
+              2
+            ]
+          },
+          "assignee_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Assignee Id",
+            "description": "ID of the user to assign the task to. To find User IDs, use [Get user](#operation/user_info_api_v1_user_get) for your own ID or [Get all collaborators](#operation/get_project_collaborators_api_v1_projects__project_id__collaborators_get) for project members.",
+            "examples": [
+              123456789
+            ]
+          },
+          "due_string": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Due String",
+            "description": "Human-readable representation of the due date. See the [Due dates](#tag/Due-dates) section for more details.",
+            "examples": [
+              "tomorrow at 12:00"
+            ]
+          },
+          "due_date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Due Date",
+            "description": "Due date in RFC 3339 format or similar. See the [Due dates](#tag/Due-dates) section for more details.",
+            "examples": [
+              "2025-02-12"
+            ]
+          },
+          "due_datetime": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Due Datetime",
+            "description": "Due date and time. See the [Due dates](#tag/Due-dates) section for more details.",
+            "examples": [
+              "2025-02-12T12:00:00Z"
+            ]
+          },
+          "due_lang": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Due Lang",
+            "description": "Due date language code. See the [Due dates](#tag/Due-dates) section for more details.",
+            "examples": [
+              "en"
+            ]
+          },
+          "duration": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duration",
+            "description": "Task duration, as a positive whole number of minutes or days. Only used if `duration_unit` is also provided.",
+            "examples": [
+              30
+            ]
+          },
+          "duration_unit": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "minute",
+                  "day"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duration Unit",
+            "description": "Unit of time for duration.",
+            "examples": [
+              "minute"
+            ]
+          },
+          "deadline_date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "format": "date",
+            "title": "Deadline Date",
+            "description": "Deadline date in YYYY-MM-DD format",
+            "examples": [
+              "2025-02-12"
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "content"
+        ],
+        "title": "Body"
+      },
+      "ItemSyncView": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "title": "User Id",
+            "description": "String ID of the user who owns the task.",
+            "examples": [
+              "1234567"
+            ]
+          },
+          "id": {
+            "type": "string",
+            "title": "Id",
+            "description": "String ID of the task.",
+            "examples": [
+              "6XGgmFVcrG5RRjVr"
+            ]
+          },
+          "project_id": {
+            "type": "string",
+            "title": "Project Id",
+            "description": "String ID of the project that contains the task.",
+            "examples": [
+              "6XGgm6PHrGgMpCFX"
+            ]
+          },
+          "section_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Section Id",
+            "description": "String ID of the section that contains the task, or `null` if the task is not in a section.",
+            "examples": [
+              "6fFPHV272WWh3gpW"
+            ]
+          },
+          "parent_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Parent Id",
+            "description": "String ID of the parent task, or `null` if this is a top-level task.",
+            "examples": [
+              "6XGgmFVcrG5RRjVr"
+            ]
+          },
+          "added_by_uid": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Added By Uid",
+            "description": "String ID of the user who created the task, or `null` if unknown.",
+            "examples": [
+              "1234567"
+            ]
+          },
+          "assigned_by_uid": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Assigned By Uid",
+            "description": "String ID of the user who assigned the task, or `null` if unassigned.",
+            "examples": [
+              "1234567"
+            ]
+          },
+          "responsible_uid": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Responsible Uid",
+            "description": "String ID of the user responsible for the task, or `null` if unassigned.",
+            "examples": [
+              "1234567"
+            ]
+          },
+          "labels": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Labels",
+            "description": "Names of labels attached to the task.",
+            "examples": [
+              [
+                "priority"
+              ]
+            ]
+          },
+          "deadline": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Deadline",
+            "description": "Deadline details for the task, or `null` when the task has no deadline.",
+            "examples": [
+              {
+                "date": "2025-02-12",
+                "lang": "en"
+              }
+            ]
+          },
+          "duration": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "anyOf": [
+                    {
+                      "type": "integer"
+                    },
+                    {
+                      "type": "string"
+                    }
+                  ]
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duration",
+            "description": "Task duration details, or `null` when the task has no duration.",
+            "examples": [
+              {
+                "amount": 30,
+                "unit": "minute"
+              }
+            ]
+          },
+          "is_collapsed": {
+            "type": "boolean",
+            "title": "Is Collapsed",
+            "description": "Whether the task is collapsed in the user's view.",
+            "examples": [
+              false
+            ]
+          },
+          "checked": {
+            "type": "boolean",
+            "title": "Checked",
+            "description": "Whether the task is completed.",
+            "examples": [
+              false
+            ]
+          },
+          "is_deleted": {
+            "type": "boolean",
+            "title": "Is Deleted",
+            "description": "Whether the task is deleted.",
+            "examples": [
+              false
+            ]
+          },
+          "added_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "format": "date-time",
+            "title": "Added At",
+            "description": "Date and time when the task was created, or `null` if unknown.",
+            "examples": [
+              "2025-01-15T10:30:00Z"
+            ]
+          },
+          "completed_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "format": "date-time",
+            "title": "Completed At",
+            "description": "Date and time when the task was completed, or `null` if active.",
+            "examples": [
+              "2025-01-16T10:30:00Z"
+            ]
+          },
+          "completed_by_uid": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Completed By Uid",
+            "description": "String ID of the user who completed the task, or `null` if active.",
+            "examples": [
+              "1234567"
+            ]
+          },
+          "updated_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "format": "date-time",
+            "title": "Updated At",
+            "description": "Date and time when the task was last updated, or `null` if unknown.",
+            "examples": [
+              "2025-01-17T10:30:00Z"
+            ]
+          },
+          "due": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Due",
+            "description": "Due date details for the task, or `null` when the task has no due date.",
+            "examples": [
+              {
+                "date": "2025-02-12",
+                "is_recurring": false,
+                "lang": "en",
+                "string": "tomorrow"
+              }
+            ]
+          },
+          "priority": {
+            "type": "integer",
+            "title": "Priority",
+            "description": "Task priority from 1 (normal) to 4 (urgent).",
+            "examples": [
+              1
+            ]
+          },
+          "child_order": {
+            "type": "integer",
+            "title": "Child Order",
+            "description": "Position of the task among sibling tasks.",
+            "examples": [
+              1
+            ]
+          },
+          "order_key": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Order Key",
+            "description": "Fractional-indexing order key: tasks sort by comparing keys lexicographically among siblings sharing the same project, section and parent task. May be `null` for tasks not yet migrated.",
+            "examples": [
+              "a1V"
+            ]
+          },
+          "content": {
+            "type": "string",
+            "title": "Content",
+            "description": "Task content.",
+            "examples": [
+              "Buy milk"
+            ]
+          },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "Task description.",
+            "examples": [
+              "Pick up organic milk"
+            ]
+          },
+          "note_count": {
+            "type": "integer",
+            "title": "Note Count",
+            "description": "**Deprecated**: only returns 0 and is marked for removal.",
+            "examples": [
+              0
+            ]
+          },
+          "day_order": {
+            "type": "integer",
+            "title": "Day Order",
+            "description": "Task order for day-based views.",
+            "examples": [
+              1
+            ]
+          },
+          "completed_count": {
+            "type": "integer",
+            "title": "Completed Count",
+            "description": "Number of times the task has been marked as completed. Increments on every completion, including recurring occurrences and re-completions of a previously reopened task. Decremented when a recurring completion is undone.",
+            "examples": [
+              3
+            ]
+          },
+          "postponed_count": {
+            "type": "integer",
+            "title": "Postponed Count",
+            "description": "Number of times the task's due date has been rescheduled by the user. Increments on any due-date change between two set dates (forward or backward); recurring completions and undos are not counted.",
+            "examples": [
+              1
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id",
+          "id",
+          "project_id",
+          "section_id",
+          "parent_id",
+          "added_by_uid",
+          "assigned_by_uid",
+          "responsible_uid",
+          "labels",
+          "deadline",
+          "duration",
+          "is_collapsed",
+          "checked",
+          "is_deleted",
+          "added_at",
+          "completed_at",
+          "completed_by_uid",
+          "updated_at",
+          "due",
+          "priority",
+          "child_order",
+          "order_key",
+          "content",
+          "description",
+          "note_count",
+          "day_order",
+          "completed_count",
+          "postponed_count"
+        ],
+        "title": "ItemSyncView",
+        "description": "A class with fields representing an ItemView which will be returned to\nclients in a sync (or sync-like) response."
+      },
+      "PaginatedList_ItemSyncView_": {
+        "properties": {
+          "results": {
+            "items": {
+              "$ref": "#/components/schemas/ItemSyncView"
+            },
+            "type": "array",
+            "title": "Results",
+            "description": "Objects in the current page of results."
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor",
+            "description": "Cursor for the next page of results, or `null` when there are no more results.",
+            "examples": [
+              "14540000435w8hj8pXXwPQJJch.X9DBH8ya2Xenok55"
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "results",
+          "next_cursor"
+        ],
+        "title": "PaginatedList"
+      },
+      "Body_829067ab": {
+        "properties": {
+          "content": {
+            "type": "string",
+            "title": "Content",
+            "description": "Updated task content. Omit this field to keep it unchanged.",
+            "examples": [
+              "Buy milk"
+            ]
+          },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "Updated task description. Omit this field to keep it unchanged.",
+            "examples": [
+              "Pick up two liters of whole milk."
+            ]
+          },
+          "labels": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Labels",
+            "description": "Updated list of label names. Omit this field to keep it unchanged.",
+            "examples": [
+              [
+                "errands",
+                "shopping"
+              ]
+            ]
+          },
+          "priority": {
+            "type": "integer",
+            "maximum": 4,
+            "minimum": 1,
+            "title": "Priority",
+            "description": "Updated task priority (1-4, where 1 is highest). Omit this field to keep it unchanged.",
+            "examples": [
+              2
+            ]
+          },
+          "due_string": {
+            "type": "string",
+            "title": "Due String",
+            "description": "Updated human-readable representation of the due date. See the [Due dates](#tag/Due-dates) section for more details. Omit this field to keep it unchanged.",
+            "examples": [
+              "tomorrow at 12:00"
+            ]
+          },
+          "due_date": {
+            "type": "string",
+            "title": "Due Date",
+            "description": "Updated due date in RFC 3339 format or similar. See the [Due dates](#tag/Due-dates) section for more details. Omit this field to keep it unchanged.",
+            "examples": [
+              "2025-02-12"
+            ]
+          },
+          "due_datetime": {
+            "type": "string",
+            "title": "Due Datetime",
+            "description": "Updated due date and time. See the [Due dates](#tag/Due-dates) section for more details. Omit this field to keep it unchanged.",
+            "examples": [
+              "2025-02-12T12:00:00Z"
+            ]
+          },
+          "due_lang": {
+            "type": "string",
+            "title": "Due Lang",
+            "description": "Updated due date language code. See the [Due dates](#tag/Due-dates) section for more details. Omit this field to keep it unchanged.",
+            "examples": [
+              "en"
+            ]
+          },
+          "assignee_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Assignee Id",
+            "description": "ID of the user to assign the task to. To find User IDs, use [Get user](#operation/user_info_api_v1_user_get) for your own ID or [Get all collaborators](#operation/get_project_collaborators_api_v1_projects__project_id__collaborators_get) for project members. Pass null to clear the value. Omit this field to keep it unchanged.",
+            "examples": [
+              123456789
+            ]
+          },
+          "duration": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duration",
+            "description": "Updated task duration, as a positive whole number of minutes or days. Only used if `duration_unit` is also provided. Pass null to clear the value. Omit this field to keep it unchanged.",
+            "examples": [
+              30
+            ]
+          },
+          "duration_unit": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "minute",
+                  "day"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duration Unit",
+            "description": "Unit of time for duration. Must be provided to update the task duration. Pass null to clear the value. Omit this field to keep it unchanged.",
+            "examples": [
+              "minute"
+            ]
+          },
+          "deadline_date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "format": "date",
+            "title": "Deadline Date",
+            "description": "Updated deadline date in YYYY-MM-DD format. Pass null to clear the value. Omit this field to keep it unchanged.",
+            "examples": [
+              "2025-02-12"
+            ]
+          },
+          "child_order": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "title": "Child Order",
+            "description": "Updated position of the task in its current scope. Omit this field to keep it unchanged.",
+            "examples": [
+              12
+            ]
+          },
+          "is_collapsed": {
+            "type": "boolean",
+            "title": "Is Collapsed",
+            "description": "Updated collapsed state of the task for the current user. Omit this field to keep it unchanged.",
+            "examples": [
+              false
+            ]
+          },
+          "day_order": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "title": "Day Order",
+            "description": "Updated position of the task in Today and Upcoming views. Omit this field to keep it unchanged.",
+            "examples": [
+              3
+            ]
+          }
+        },
+        "type": "object",
+        "title": "Body"
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  }
+}

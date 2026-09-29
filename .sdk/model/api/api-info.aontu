@@ -1,0 +1,27 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      description: "Unofficial task-only SDK assessment. Source: https://developer.todoist.com/openapi.json. Not created by, affiliated with, or supported by Todoist."
+      security: {
+        in: "header"
+        name: "Authorization"
+        prefix: "Bearer"
+        scheme: "bearerAuth"
+        type: "http"
+      }
+      servers: [
+        {
+          url: "https://api.todoist.com/"
+        }
+      ]
+      summary: "Unofficial task-only SDK assessment."
+      title: "Todoist Tasks"
+      version: "1"
+      website: "https://todoist.com"
+    }
+  }
+}
+
