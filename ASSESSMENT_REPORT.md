@@ -77,6 +77,6 @@ The source specification's SHA-256 is `c720d271ad4d4fc6bd4e435fb27f48c1c3e806728
 
 ## Time and AI use
 
-API research and account setup took an estimated 5-7 minutes. The first assisted implementation and report draft spanned about 20 minutes by local file timestamps, giving an initial elapsed estimate of 25-27 minutes. Human time and automated execution were not recorded separately. The later rename, bug fix, report revisions and publication work happened after that initial estimate; I have not timed those separately.
+API research and account setup took an estimated 5-7 minutes. The first assisted implementation and report draft spanned about 20 minutes by local file timestamps, giving an initial elapsed estimate of 25-27 minutes. Human time and automated execution were not recorded separately. The later report revisions and publication work happened after that initial estimate; I have not timed those separately.
 
 I used AI assistance to compare APIs, prepare the scoped specification, troubleshoot the generator, run checks and draft this report. I checked the model output, the full test count and the live read-only responses described above.
