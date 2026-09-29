@@ -7,6 +7,10 @@ Source: [official OpenAPI specification](https://developer.todoist.com/openapi.j
 Environment: Windows, PowerShell, Node.js 24.18.0, npm 12.0.2  
 Tools: `@voxgig/create-sdkgen@0.30.2`, TypeScript target, generated test feature
 
+## API choice
+
+Todoist is a task-management app with an API for tasks and other resources. I used its official OpenAPI specification and limited this SDK to task endpoints. The task list is a useful generator check because it returns a page object with `results` and `next_cursor`, rather than an array at the top level. A personal API token also allowed a read-only authentication check.
+
 ## Result
 
 I generated an unofficial TypeScript SDK for Todoist's task endpoints with Voxgig's tools. The standard `npm test` command now runs 203 tests: **202 pass, one is skipped, and none fail**. I also made an authenticated read-only request to Todoist. The account had no tasks, so that request confirmed authentication and connectivity but did not exercise a non-empty live task list.

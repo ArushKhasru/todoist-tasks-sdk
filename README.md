@@ -2,7 +2,7 @@
 
 [Assessment report: generator experience and verification](ASSESSMENT_REPORT.md)
 
-Todoist Tasks client, generated from the OpenAPI spec.
+Todoist is a task-management app. Its [API v1](https://developer.todoist.com/api/v1/) lets integrations work with tasks, projects, and other resources. This SDK covers the task endpoints only. Task lists are paginated: Todoist returns records in `results` and a `next_cursor` for the next page.
 
 Unofficial task-only SDK assessment.
 
@@ -72,7 +72,7 @@ const client = new TodoistTasksSDK({
   apikey: process.env.TODOIST_API_TOKEN,
 })
 
-// List all tasks (returns TaskEntity[] — .data() for the record)
+// List tasks in one page (returns TaskEntity[] — .data() for the record)
 const tasks = await client.Task().list()
 for (const task of tasks) {
   console.log(task)
